@@ -8,8 +8,7 @@ terraform {
 }
 
 provider "google" {
-  credentials = file("key.json")
-
+  credentials = var.credentials
   project = "niisk-ee"
   region  = "europe-north1"
   zone    = "europe-north1-a"
