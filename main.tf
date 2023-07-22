@@ -1,25 +1,18 @@
 terraform {
   required_providers {
     google = {
-      source = "hashicorp/google"
+      source  = "hashicorp/google"
       version = "4.51.0"
     }
   }
 }
 
-variable "credentials" {
-  description = "for GCP"
-  type        =  string
-  sensitive   =  true
-
-}
-
 
 provider "google" {
-  credentials = var.credentials
-  project = "niisk-ee"
-  region  = "europe-north1"
-  zone    = "europe-north1-a"
+  credentials = var.GCPkey
+  project     = "niisk-ee"
+  region      = "europe-north1"
+  zone        = "europe-north1-a"
 }
 
 resource "google_compute_network" "vpc_network" {
@@ -54,9 +47,9 @@ data "google_iam_policy" "noauth" {
 }
 
 resource "google_cloud_run_service_iam_policy" "noauth" {
-  location    = google_cloud_run_service.service.location
-  project     = google_cloud_run_service.service.project
-  service     = google_cloud_run_service.service.name
+  location = google_cloud_run_service.service.location
+  project  = google_cloud_run_service.service.project
+  service  = google_cloud_run_service.service.name
 
   policy_data = data.google_iam_policy.noauth.policy_data
 }
