@@ -7,6 +7,12 @@ terraform {
   }
 }
 
+variable "credentials" {
+  description = "GCP key"
+  type        =  string
+}
+
+
 provider "google" {
   credentials = var.credentials
   project = "niisk-ee"
