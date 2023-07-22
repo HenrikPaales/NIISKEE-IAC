@@ -8,8 +8,10 @@ terraform {
 }
 
 variable "credentials" {
-  description = "GCP key"
+  description = "for GCP"
   type        =  string
+  sensitive   =  true
+
 }
 
 
