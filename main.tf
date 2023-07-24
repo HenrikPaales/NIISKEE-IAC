@@ -8,8 +8,14 @@ terraform {
 }
 
 
+variable "gcp_credentials" {
+  type        = string
+  description = "GCP credentials JSON"
+  sensitive   = true
+}
+
 provider "google" {
-  credentials = var.GCPkey
+  credentials = var.gcp_credentials
   project     = "niisk-ee"
   region      = "europe-north1"
   zone        = "europe-north1-a"
